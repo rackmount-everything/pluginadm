@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# pluginadm
+#
+# Automatically deploy applications in smartos
+
+IFS=$'\n'
+
+case "$1" in
+
+"install")
+	/opt/.pluginadm/install.sh $2
+	
+	if [ "$?" -ne "0" ]; then
+		exit 1
+	fi
+	;;
+	
+"avail") echo "Not Yet Implemented"
+	exit 1
+	;;
+
+"setup") echo "Not Yet Implemented"
+	exit 1
+	;;
+
+""|help)
+	echo "Usage:"
+	echo "pluginadm <command> [options]"
+	echo ""
+	echo "install <application>"
+	echo "avail"
+	echo "setup"
+	echo "help" [command]
+	exit 0
+	;;
+esac

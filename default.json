@@ -1,0 +1,14 @@
+{
+ "max_physical_memory": 2048,
+ "max_locked_memory": 2048,
+ "max_swap": 2048,
+ "resolvers": ["192.168.1.1", "1.1.1.1"],
+ "nics": [
+  {
+    "nic_tag": "admin",
+    "ips": ["192.168.1.5/20", "addrconf"],
+    "netmask": "255.255.240.0",
+    "gateway": "192.168.1.1"
+  }
+ ]
+}

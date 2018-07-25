@@ -1,0 +1,35 @@
+# Zone Specification for emby application
+#                     __         
+#     ___  ____ ___  / /_  __  __
+#    / _ \/ __ `__ \/ __ \/ / / /
+#   /  __/ / / / / / /_/ / /_/ / 
+#   \___/_/ /_/ /_/_.___/\__, /  
+#                       /____/  
+
+version="0.1"
+name="emby"
+UUID="63d6e664-3f1f-11e8-aef6-a3120cf8dd9d"
+
+declare -a FILESYSTEMS
+FILESYSTEMS=("media")
+
+function zone_setup {
+	echo "Setting up $1"
+	zlogin $1 "cd /root; apt update"
+	zlogin $1 "wget -O /root/emby-server-deb_3.5.1.0_amd64.deb \
+               https://github.com/MediaBrowser/Emby.Releases/releases/download/3.5.1.0/emby-server-deb_3.5.1.0_amd64.deb"
+	zlogin $1 "dpkg -i /root/emby-server-deb_3.5.1.0_amd64.deb"
+	#zlogin $1 "systemctl status emby-server"
+	zlogin $1 "systemctl stop emby-server"
+	
+	zlogin $1 "if [ ! -d /mnt/media/.emby ]; then \
+	          mv /var/lib/emby /mnt/media/.emby; \
+			  else \
+			  rm -r /var/lib/emby; \
+			  fi"
+
+	zlogin $1 "ln -s /mnt/media/.emby /var/lib/emby"
+
+	zlogin $1 "systemctl start emby-server"
+	zlogin $1 "systemctl status emby-server"
+}
