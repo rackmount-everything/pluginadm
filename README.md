@@ -1,6 +1,6 @@
 # pluginadm
 
-####An extremly alpha set of scripts for automatically building and installing applications in SmartOS zones. More documentation to follow.
+##### An extremly alpha set of scripts for automatically building and installing applications in SmartOS zones. More documentation to follow.
 
 ## Installation
 
