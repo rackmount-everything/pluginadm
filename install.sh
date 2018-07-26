@@ -123,8 +123,10 @@ done
 
 vmadm create -f /tmp/$name.json
 
-zone_uuid=`vmadm lookup -j alias="$name" | json -a "uuid"`
+zone_uuid=`vmadm list -o create_timestamp,uuid | tail -n +2 | sort | tail -n1 | awk '{print $2}'`
 
 echo $zone_uuid
 
 zone_setup $zone_uuid
+
+post_install_msg $zone_uuid

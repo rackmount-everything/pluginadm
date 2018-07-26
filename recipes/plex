@@ -1,0 +1,45 @@
+# Zone Specification for PLEX application
+#      ____  __    _______  __
+#     / __ \/ /   / ____/ |/ /
+#    / /_/ / /   / __/  |   / 
+#   / ____/ /___/ /___ /   |  
+#  /_/   /_____/_____//_/|_|  
+		                             
+version="0.1"
+name="plex"
+UUID="63d6e664-3f1f-11e8-aef6-a3120cf8dd9d"
+
+declare -a FILESYSTEMS
+FILESYSTEMS=("media")
+
+function zone_setup {
+	echo "Setting up $1"
+	zlogin $1 "cd /root; apt update"
+	zlogin $1 "wget -O /root/plexmediaserver_1.13.4.5271-200287a06_amd64.deb \
+               https://downloads.plex.tv/plex-media-server/1.13.4.5271-200287a06/plexmediaserver_1.13.4.5271-200287a06_amd64.deb"
+	zlogin $1 "dpkg -i /root/plexmediaserver_1.13.4.5271-200287a06_amd64.deb"
+	
+	sleep 5
+	zlogin $1 "systemctl restart plexmediaserver"
+	zlogin $1 "systemctl status plexmediaserver"
+	zlogin $1 "systemctl stop plexmediaserver"
+	
+	zlogin $1 "if [ ! -d /mnt/media/.plexmediaserver ]; then \
+	          mv /var/lib/plexmediaserver /mnt/media/.plexmediaserver; \
+			  else \
+			  rm -r /var/lib/plexmediaserver; \
+			  fi"
+
+	zlogin $1 "ln -s /mnt/media/.plexmediaserver /var/lib/plexmediaserver"
+
+	zlogin $1 "systemctl start plexmediaserver"
+	zlogin $1 "systemctl status plexmediaserver"
+}
+
+function post_install_msg {
+	ip=`zlogin $1 "ip route get 1.1.1.1"`
+	ip=`echo $ip | awk 'NR==1 {print $NF}'`
+	echo ""
+	echo "Installtion of $name plugin complete!"
+	echo "Use your browser to navigate to http://$ip:32400/web/ to configure $name"
+}

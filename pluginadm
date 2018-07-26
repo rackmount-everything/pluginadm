@@ -2,7 +2,8 @@
 
 # pluginadm
 #
-# Automatically deploy applications in smartos
+# Automatically deploy applications in smartos in a semi-interactive way
+# Application set up scripts are packages as "plugins", thus pluginadm
 
 IFS=$'\n'
 
@@ -16,22 +17,53 @@ case "$1" in
 	fi
 	;;
 	
-"avail") echo "Not Yet Implemented"
-	exit 1
+"avail")
+	ls /opt/.pluginadm/recipes/
 	;;
 
 "setup") echo "Not Yet Implemented"
 	exit 1
 	;;
 
-""|help)
-	echo "Usage:"
-	echo "pluginadm <command> [options]"
-	echo ""
-	echo "install <application>"
-	echo "avail"
-	echo "setup"
-	echo "help" [command]
-	exit 0
+"update") echo "Not Yet Implemented"
+	exit 1
 	;;
+
+""|help)
+	case $2 in
+
+	"install")
+		echo "Usage:"
+		echo "pluginadm install <plugin>"
+		echo ""
+		echo "Install specified plugin"
+		;;
+
+	"avail")
+		echo "Usage:"
+		echo "pluginadm avail"
+		echo ""
+		echo "List available plugins"
+		;;
+
+	"setup")
+		echo "Not Yet Implemented"
+		;;
+
+	"Update")
+		echo "Not Yet Implemented"
+		;;
+
+	*)
+		echo "Usage:"
+		echo "pluginadm <command> [options]"
+		echo ""
+		echo "install <application>"
+		echo "avail"
+		echo "setup"
+		echo "help" [command]
+		exit 0
+		;;
+	
+	esac
 esac
