@@ -1,0 +1,5 @@
+{
+  	"type": "lofs",
+	"source": "zones/pluginadm",
+	"target": "/mnt/pluginadm"
+}  

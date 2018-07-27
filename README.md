@@ -4,11 +4,11 @@
 
 ## Installation
 
-download the repository into /opt/.pluginadm
+download the repository into `/opt/.pluginadm`
 
-modify the contents of default.json to appropriate values for your system
+modify the contents of `default.json` to appropriate values for your system
 
-modify the json files in /opt/.pluginadm/filesystems/ to point the source field to the appropriate datasets on your machine
+modify the json files in `/opt/.pluginadm/filesystems/` to point the source field to the appropriate datasets on your machine
 
 Optional: Create a xml manifest for svcadm to automatically sym link pluginadm into /opt/local/bin at boot
 
@@ -17,3 +17,7 @@ Optional: Create a xml manifest for svcadm to automatically sym link pluginadm i
 `/opt/.pluginadm/pluginadm <command> [options]`
 
 Use `pluginadm help` to see available commands and options
+
+## Updating
+
+You can update pluginadm with `/opt/.pluginadm/pluginadm update

@@ -18,7 +18,13 @@ case "$1" in
 	;;
 	
 "avail")
-	ls /opt/.pluginadm/recipes/
+	echo "Name^Description" > /tmp/avail.txt
+	for FILE in `find /opt/.pluginadm/recipes/*`; do 
+		source $FILE
+		echo "$name^$description" >> /tmp/avail.txt
+	done
+	column -t -s ^ /tmp/avail.txt
+	rm /tmp/avail.txt
 	;;
 
 "setup") echo "Not Yet Implemented"
