@@ -7,6 +7,7 @@
 		                             
 version="0.1"
 name="plex"
+description="Media server and organizer similiar to Emby"
 UUID="63d6e664-3f1f-11e8-aef6-a3120cf8dd9d"
 
 declare -a FILESYSTEMS
@@ -25,9 +26,9 @@ function zone_setup {
 	zlogin $1 "systemctl stop plexmediaserver"
 	
 	zlogin $1 "if [ ! -d /mnt/media/.plexmediaserver ]; then \
-	          mv /var/lib/plexmediaserver /mnt/media/.plexmediaserver; \
+	          	mv /var/lib/plexmediaserver /mnt/media/.plexmediaserver; \
 			  else \
-			  rm -r /var/lib/plexmediaserver; \
+			  	rm -r /var/lib/plexmediaserver; \
 			  fi"
 
 	zlogin $1 "ln -s /mnt/media/.plexmediaserver /var/lib/plexmediaserver"

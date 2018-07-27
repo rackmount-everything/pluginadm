@@ -25,8 +25,13 @@ case "$1" in
 	exit 1
 	;;
 
-"update") echo "Not Yet Implemented"
-	exit 1
+"update")
+	/opt/.pluginadm/update.sh
+	if [ "$?" = 0 ]; then 
+		echo "Update Successful" 
+	else 
+		echo "Update Failed: Something has not gone well"
+	fi
 	;;
 
 ""|help)
@@ -50,7 +55,7 @@ case "$1" in
 		echo "Not Yet Implemented"
 		;;
 
-	"Update")
+	"update")
 		echo "Not Yet Implemented"
 		;;
 

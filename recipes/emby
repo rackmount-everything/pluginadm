@@ -8,6 +8,7 @@
 
 version="0.1"
 name="emby"
+description="Emby is a media server designed to organize, play, and stream audio and video to a variety of devices"
 UUID="63d6e664-3f1f-11e8-aef6-a3120cf8dd9d"
 
 declare -a FILESYSTEMS
