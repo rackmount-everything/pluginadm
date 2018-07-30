@@ -20,4 +20,4 @@ Use `pluginadm help` to see available commands and options
 
 ## Updating
 
-You can update pluginadm with `/opt/.pluginadm/pluginadm update
+You can update pluginadm with `/opt/.pluginadm/pluginadm update`
